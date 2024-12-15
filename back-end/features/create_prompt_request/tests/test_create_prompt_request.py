@@ -3,13 +3,13 @@ from datetime import datetime, UTC
 from ..application.dto import CreatePromptRequestDTO
 from ..application.use_cases import CreatePromptRequestUseCase
 from ..domain.entities import PromptRequest, PromptStatus
-from ..domain.value_objects import RequestId, UserRoleArn, HumanPrompt
+from ..domain.value_objects import RequestId, UserRoleArn, HumanPrompt, UserTables
 
 def test_create_prompt_request(mock_repository):
     human_prompt = "What is the weather today?"
     user_role_arn = "arn:aws:iam::123456789012:role/test-role"
-    
-    dto = CreatePromptRequestDTO(human_prompt=human_prompt, user_role_arn=user_role_arn)
+    user_tables=[{"teste":"teste"}]
+    dto = CreatePromptRequestDTO(human_prompt=human_prompt, user_role_arn=user_role_arn, user_tables= user_tables)
     use_case = CreatePromptRequestUseCase(repository=mock_repository)
     request_id = use_case.execute(dto)
     
@@ -20,11 +20,12 @@ def test_prompt_request_entity():
     request_id = RequestId("123")
     human_prompt = HumanPrompt("Test prompt")
     user_role_arn = UserRoleArn("arn:aws:iam::123456789012:role/test-role")
-    
+    user_tables= UserTables([{"teste":"teste"}])
     prompt_request = PromptRequest.create(
         request_id=request_id,
         human_prompt=human_prompt,
-        user_role_arn=user_role_arn
+        user_role_arn=user_role_arn,
+        user_tables=user_tables
     )
     
     assert prompt_request.request_id == request_id

@@ -25,7 +25,8 @@ def valid_human_prompt() -> HumanPrompt:
 def valid_dto() -> CreatePromptRequestDTO:
     return CreatePromptRequestDTO(
         human_prompt='What is the weather today?',
-        user_role_arn='arn:aws:iam::123456789012:role/test-role'
+        user_role_arn='arn:aws:iam::123456789012:role/test-role',
+        user_tables=[{"teste":"teste"}]
     )
 
 @pytest.fixture

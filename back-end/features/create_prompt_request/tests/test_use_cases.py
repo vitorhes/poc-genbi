@@ -14,7 +14,8 @@ class TestCreatePromptRequestUseCase:
         use_case = CreatePromptRequestUseCase(repository=mock_repository)
         dto = CreatePromptRequestDTO(
             human_prompt='',
-            user_role_arn='arn:aws:iam::123456789012:role/test-role'
+            user_role_arn='arn:aws:iam::123456789012:role/test-role',
+            user_tables=[{"teste":"teste"}]
         )
 
         with pytest.raises(ValueError, match="Human prompt cannot be empty"):
@@ -24,7 +25,8 @@ class TestCreatePromptRequestUseCase:
         use_case = CreatePromptRequestUseCase(repository=mock_repository)
         dto = CreatePromptRequestDTO(
             human_prompt='test prompt',
-            user_role_arn=''
+            user_role_arn='',
+             user_tables=[{"teste":"teste"}]
         )
 
         with pytest.raises(ValueError, match="User role ARN cannot be empty"):

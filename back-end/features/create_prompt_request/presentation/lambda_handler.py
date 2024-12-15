@@ -13,7 +13,7 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         body = json.loads(event['body'])
         human_prompt = body.get('human_prompt')
         user_role_arn = body.get('user_role_arn')
-
+        user_tables = body.get('user_tables')
         if not human_prompt or not user_role_arn:
             return {
                 'statusCode': 400,
@@ -22,7 +22,8 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
 
         dto = CreatePromptRequestDTO(
             human_prompt=human_prompt,
-            user_role_arn=user_role_arn
+            user_role_arn=user_role_arn,
+            user_tables=user_tables
         )
         
         request_id = use_case.execute(dto)

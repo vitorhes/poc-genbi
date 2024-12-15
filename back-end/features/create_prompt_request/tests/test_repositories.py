@@ -14,7 +14,8 @@ class TestDynamoDBPromptRequestRepository:
             prompt_request = PromptRequest.create(
                 request_id=valid_request_id,
                 human_prompt=valid_human_prompt,
-                user_role_arn=valid_user_role_arn
+                user_role_arn=valid_user_role_arn,
+                            user_tables=[{"teste":"teste"}]
             )
 
             repository.save(prompt_request)

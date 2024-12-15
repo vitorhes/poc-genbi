@@ -26,7 +26,8 @@ class TestCreatePromptRequestIntegration:
         use_case = CreatePromptRequestUseCase(repository)
         dto = CreatePromptRequestDTO(
             human_prompt="Test integration prompt",
-            user_role_arn="arn:aws:iam::123456789012:role/test-role"
+            user_role_arn="arn:aws:iam::123456789012:role/test-role",
+                        user_tables=[{"teste":"teste"}]
         )
 
         # Act
