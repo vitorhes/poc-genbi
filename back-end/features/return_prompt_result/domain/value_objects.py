@@ -1,6 +1,13 @@
 from typing import NamedTuple, List
 from uuid import UUID
 
+
+class LLMResponse(NamedTuple):
+    value: str
+
+class ResultURL(NamedTuple):
+    value: str
+
 class RequestId(NamedTuple):
     value: UUID
 
@@ -14,9 +21,6 @@ class UserTables(NamedTuple):
     value: List[dict]
 
 class AccountId(NamedTuple):
-    value: str
-
-class ResultURL(NamedTuple):
     value: str
 
 class ResultContent(NamedTuple):
