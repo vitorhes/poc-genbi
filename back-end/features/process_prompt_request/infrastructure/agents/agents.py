@@ -6,10 +6,10 @@ from ...domain.types import PromptType
 class SupervisorAgent(Agent):
     """Agent responsible for classifying prompts."""
     
-    def classify(self, prompt: HumanPrompt) -> PromptType:
+    def classify(self, human_prompt: HumanPrompt) -> PromptType:
         """Classify the prompt type."""
         classification = self.llm.complete(
-            PromptTemplates.CLASSIFY.format(text=prompt.text)
+            PromptTemplates.CLASSIFY.format(human_prompt=human_prompt.value)
         )
         
         if "SQL_QUERY" in classification:

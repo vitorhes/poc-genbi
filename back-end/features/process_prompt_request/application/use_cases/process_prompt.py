@@ -29,11 +29,16 @@ class ProcessPromptUseCase:
             
             # First, use supervisor to classify
             supervisor = factory.create_supervisor()
-            prompt_type = supervisor.classify(human_prompt)
+            prompt_type = supervisor.classify(
+                 human_prompt = human_prompt
+            )
             
             # Then create and use appropriate agent
             agent = factory.create_agent_by_type(prompt_type)
-            result = agent.process(human_prompt)
+            result = agent.process(
+                human_prompt = human_prompt,
+                user_tables = prompt_request.user_tables
+                )
             
             return ProcessingResult(
                 result=result
